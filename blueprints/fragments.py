@@ -1,25 +1,31 @@
 from connections import WS
+import storage.storage as Storage
 
 
 def register_callbacks():
     def take_fragment(client, data):
-        WS.send_team_answered(data['userName'], data['teamId'], data['teamName'])
+        user_id = int(data['user_id'])
+        user_username = data['user_username']
+        milestone_id = int(data['milestone_id'])
+        request_hardness = float(data['request_hardness'])
+        fragment = Storage.addFragmentUser(user_id, user_username, milestone_id, request_hardness)
+        WS.send_set_fragment(fragment)
     WS.setCallback("take_fragment", take_fragment)
 
-    # def answerResult(client, data):
-    #     global answeringTeam
-    #     if answeringTeam is None:
-    #         return
-    #
-    #     if data['result']:
-    #         DB.execute(sql.updateTeamScoreIncrementById, [answeringTeam['teamId']])
-    #
-    #     team = DB.execute(sql.selectTeamById, [answeringTeam['teamId']])
-    #     WS.send_answer_result(data['result'], team['score'])
-    #
-    #     answeringTeam = None
-    # WS.setCallback("answer_result", answerResult)
+    def update_fragment_text(client, data):
+        milestone_id = int(data['milestone_id'])
+        fragment_id = int(data['fragment_id'])
+        fragment_text = data['fragment_text']
+        fragment = Storage.getExistingFragmentUserById(milestone_id, fragment_id)
+        if fragment is None:
+            print("CRITICAL ERROR. FRAGMENT NOT EXISTING")
+            return
+        fragment.text = fragment_text
+        WS.send_fragment_updated(fragment)
+    WS.setCallback("update_fragment_text", update_fragment_text)
 
-    # def getAnsweringState(client, data):
-    #     return WS.prepare_answering_state(answeringTeam)
-    # WS.setCallback("get_answering_state", getAnsweringState)
+    def get_all_texts(client, data):
+        milestone_id = int(data['milestone_id'])
+        fragments = Storage.getAllMilestoneFragments(milestone_id)
+        WS.send_all_texts(fragments)
+    WS.setCallback("get_all_texts", get_all_texts)

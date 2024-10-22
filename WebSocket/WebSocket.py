@@ -1,7 +1,7 @@
 import json
 import logging
 from WebSocket.websocket_server.cb_websocket_server import CallbacksWebSocketServer
-from database.storage import User
+from storage.storage import User, Fragment
 
 
 # Singleton
@@ -31,6 +31,48 @@ class WebSocket(CallbacksWebSocketServer):
                 "id": userData.id,
                 "username": userData.username,
                 "is_admin": userData.is_admin,
+            }
+        }))
+    def send_set_fragment(self, fragmentData: Fragment):
+        self.send_broadcast(json.dumps({
+            "event": "set_fragment",
+            "data": {
+                "id": fragmentData.fragment_id,
+                "milestone_id": fragmentData.milestone_id,
+                "name": fragmentData.fragment_name,
+                "description": fragmentData.fragment_description,
+                "default_text": fragmentData.fragment_default_text,
+                "hardness": fragmentData.fragment_hardness,
+                "text": fragmentData.text,
+            }
+        }))
+    def send_fragment_updated(self, fragmentData: Fragment):
+        self.send_broadcast(json.dumps({
+            "event": "fragment_updated",
+            "data": {
+                "id": fragmentData.fragment_id,
+                "user_id": fragmentData.user_id,
+                "user_username": fragmentData.user_username,
+                "milestone_id": fragmentData.milestone_id,
+                "name": fragmentData.fragment_name,
+                "description": fragmentData.fragment_description,
+                "default_text": fragmentData.fragment_default_text,
+                "hardness": fragmentData.fragment_hardness,
+                "text": fragmentData.text,
+            }
+        }))
+    def send_all_texts(self, fragmentsData: [Fragment]):
+        self.send_broadcast(json.dumps({
+            "event": "all_texts",
+            "data": {
+                "fragments": list(map(lambda fragmentData: {
+                    "id": fragmentData.fragment_id,
+                    "user_id": fragmentData.user_id,
+                    "user_username": fragmentData.user_username,
+                    "name": fragmentData.fragment_name,
+                    "description": fragmentData.fragment_description,
+                    "text": fragmentData.text,
+                }, fragmentsData)),
             }
         }))
 

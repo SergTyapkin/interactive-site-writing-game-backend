@@ -8,5 +8,34 @@
     "ws_port": "9000",
 
     "cors_origins": [],
-    "allow_all_origins": true
+    "allow_all_origins": true,
+
+    "milestones": [
+        {
+            "id": 1,
+            "fragments": [
+                {
+                    "id": 1,
+                    "hardness": 0.0,
+                    "name": "Логотип сайта",
+                    "description": "Необходимо создать элемент, показывающий логотип сайта. Он должен растигиваться на 100% предоставленной ему ширины и высоты",
+                    "default_text": "<div>\n  <img/>\n</div>"
+                },
+                {
+                    "id": 2,
+                    "hardness": 0.7,
+                    "name": "Some Name 2",
+                    "description": "Some Description",
+                    "default_text": ".css"
+                },
+                {
+                    "id": 3,
+                    "hardness": 0.2,
+                    "name": "Some Name 3",
+                    "description": "Some Description",
+                    "default_text": ".css"
+                }
+            ]
+        }
+    ]
 }
