@@ -200,59 +200,59 @@
             "fragments": [
                 {
                     "id": 10,
-                    "hardness": 0.5,
+                    "hardness": 0.4,
                     "name": "Отправка формы",
-                    "description": "",
-                    "default_text": ""
+                    "description": "Необходимо перехватывать событие 'submit' отправки формы, предотвращать его поведение по умолчанию, после чего отправлять POST-запрос на сайт \"https://example.com/send-form\", с JSON-данными в теле в следующем формате:\n\n{\n  \"name\": string,\n  \"phone\": string,\n  \"question_theme\": \"sell\" | \"fix\" | \"info\"\n  \"texts\": string\n}\n\nid HTML-элементов:\n-формы: \"form-contacts\"\n- инпут ввода имени: \"form-contacts__input-name\"\n-инпут ввода телефона: \"form-contacts__input-phone\"\n-инпут ввода текста пояснений: \"form-contacts__input-text\"\n Инпуты с type=\"radio\" для выбора типа обращения имеют атрибут name=\"question-theme\".",
+                    "default_text": "// Получаем HTML-элементы\nconst formElement = document.getElementById();\nconst inputNameElement = document.getElementById();\nconst inputPhoneElement = document.getElementById();\nconst inputTextsElement = document.getElementById();\nformElement.addEventListener(, async (event) => {\n  // Ожидаем подтверждения пользователем в модальном окне\n  if (!await confirm('Подтвердите отправку данных')) {\n    return;\n  }\n  // Отправляем запрос\n  await fetch(___, {\n    method: ___,\n    headers: {\n      ___\n    },\n    body: JSON.stringify({\n      ___\n    }),\n  });\n  // TODO: Необходимо добавить проверку на то, что запрос принят сервером\n  // Говорим спасибо, что человек отправил форму\n  formElement.innerHTML = ___;\n});"
                 },
                 {
                     "id": 20,
                     "hardness": 1,
                     "name": "Показ модального окна",
-                    "description": "",
-                    "default_text": ""
+                    "description": "Требуется заменить браузерную функцию confirm новой реализацией. Она должна принимать один аргумент - сообщение в окне, показывать модальное окно с переданным текстом и двумя кнопками \"Да\" и \"Нет\", и возвращать Promise, который резолвится со значением true или false, когда пользователь нажимает на соответствующую кнопку",
+                    "default_text": "___ = (message = '') => {\n  // TODO: Создать Promise и сохранить его функцию resolve в переменную resolvePromiseFunction \n  let resolvePromiseFunction;\n  const promise = new Promise(___);\n\n  // Создание элемента фона\n  const modalElementRoot = document.createElement('div');\n  modalElementRoot.style.position = 'fixed';\n  modalElementRoot.style.inset = '0';\n  // TODO: добавить полу-прозрачный фон\n\n  // Создание элемента формы\n  const modalElementForm = ___;\n  Object.assign(modalElementForm.style, {\n    position: 'fixed',\n    top: '50%',\n    left: '50%',\n    // TODO: выровнять форму по центру. Сейчас в центре экрана находится её левый верхний угол\n    // TODO: определить ширину формы (подстраивающуюся под размер экрана)\n    // TODO: сделать красиво. Отступы, фон, цвет текста, скругления, и т.д.\n  });\n  modalElementRoot.appendChild(___);\n\n  // Создание элемента текста внутри формы\n  const modalElementFormText = document.createElement('div');\n  modalElementFormText.innerText = message;\n  // TODO: Добавить стили для текста\n  ___.appendChild(___);\n\n  // Создание элементов кнопок внутри формы\n  const modalElementFormButtons = [\n    document.createElement(___),\n    document.createElement(___),\n  ];\n  modalElementFormButtons.forEach(button => {\n    button.style.padding = '10px';\n    // TODO: Добавить красивые стили для кнопок. Не забыть выровнять каждую из них по половине ширины формы\n    // TODO: Сделать так, чтобы при наведении курсора на кнопку, он становился указателем на кликабельную зону\n    ___.appendChild(button);\n  });\n  modalElementFormButtons[0].innerText = ___;\n  modalElementFormButtons[0].addEventListener('click', () => {\n    // TODO: Зарезолвить промис с нужным значением и удалить элемент формы с экрана\n  });\n  modalElementFormButtons[1].innerText = ___;\n  modalElementFormButtons[1].addEventListener('click', () => {\n    // TODO: Зарезолвить промис с нужным значением и удалить элемент формы с экрана\n  });\n\n  // Добавляем созданный корневой элемент в DOM\n  document.body.appendChild(___);\n\n  return promise;\n};"
                 },
                 {
                     "id": 30,
-                    "hardness": 0.0,
+                    "hardness": 0.5,
                     "name": "Анимация с зависимостью от положения курсора",
-                    "description": "",
-                    "default_text": ""
+                    "description": "Необходимо добавить для каждой картинки в галерее (для каждого элемента внутри элемента с id=\"gallery\") эффект поворота в сторону курсора мыши.\n\nПростой вариант: в стилях CSS для этих элементов уже прописаны зависимости от css-переменных положения курсора --x, --y и размера страницы --total-width, --total-height. Их нужно устанавливать через JS при передвижениях мыши\n\nСложный вариант: при передвижении мыши в зависимости от положения элемента и положения курсора необходимо устанавливать css-свойство transform, прописывать ему смещения и повороты",
+                    "default_text": "const galleryElements = document.querySelectorAll(___);\ndocument.addEventListener(___, (event) => {\n  ___.forEach(element => {\n    // Следующие 3 строки кода необходимы для работы другой части кода. Не убирайте\n    if (element.hasAttribute('data-is-fullscreen')) {\n      return;\n    }\n\n    // Простой (и правильный) вариант\n    element.setAttribute('style', `\n      ___: ${___};\n      ___: ${___};\n      ___: ${___};\n      ___: ${___};\n    `);\n\n    // Сложный вариант\n    // const {top: elementTop, left: elementLeft} = element.getBoundingClientRect();\n    // const cursorX = ___;\n    // const cursorY = ___;\n    // const ROTATION_DEG = 60;\n    // const TRANSLATION_PX = 60;\n    // element.style.___ = `\n    //   rotateX(${___ * ROTATION_DEG}deg)\n    //   rotateY(${___ * ROTATION_DEG}deg)\n    //   translateX(${___ * TRANSLATION_PX}px)\n    //   translateY(${___ * TRANSLATION_PX}px)\n    // `\n  });\n});"
                 },
                 {
                     "id": 40,
-                    "hardness": 0.0,
+                    "hardness": 0.4,
                     "name": "Анимация с зависимостью от прокрутки страницы",
-                    "description": "",
-                    "default_text": ""
+                    "description": "Необходимо накладывать на форму ввода данных анимацию появления при прокрутки к ней (когда она начинает показываться на экране). С помощью CSS-стилей форма изначально скрыта. Чтобы она появилась с анимацией, необходимо добавить на нее класс 'visible'. Элемент формы имеет id=\"form-contacts\"",
+                    "default_text": "// Получаем HTML-элемент формы\nconst formHTMLElement = document.getElementById(___);\ndocument.body.addEventListener(___, () => {\n  // TODO: Получаем текущее положение элемента относительно области просмотра экрана\n  const box = ___;\n\n  // TODO: Проверяем, попадает ли форма в обозначенную область\n  if (___) {\n    // TODO: Если попадает, добавляем класс 'visible'\n    formHTMLElement.___;\n    return;\n  }\n  // TODO: Если не попадает, убираем класс 'visible'\n  formHTMLElement.___;\n});"
                 },
                 {
                     "id": 50,
-                    "hardness": 0.0,
+                    "hardness": 0.2,
                     "name": "Анимация плавного раскрытия списка",
-                    "description": "",
-                    "default_text": ""
+                    "description": "Необходимо создать анимацию плавного раскрытия раскрывающегося списка в тэге <details>. Для этого следует использовать анимацию максимальной высоты элемента из-за того, что реальная высота неизвестна и зависит от содержащихся внутри него элементов. Анимация плавного закрытия работать не будет, потому что тэг <details> закрывается и раскрывается моментально. Тэг имеет id=\"details\"",
+                    "default_text": "// Получаем HTML-элемент раскрывающегося списка\nconst detailsElement = document.getElementById(___);\n// TODO: Добавляем на него стили для обрезки выходящего за размеры блока контента и для плавной анимации максимальной высоты\ndetailsElement.addEventListener(___, () => {\n  // TODO: Если на элементе есть определенный атрибут, отвечающий за его состояние (открыт или нет), \n  //  то элемент нужно закрыть (установить ему максимальную высоту около 20px)\n  if (___) {\n    detailsElement.___;\n    return;\n  }\n  // Иначе элемент нужно развернуть (установить ему большую максимальную высоту, которая точно всегда будет больше его реальной высоты)\n  detailsElement.___;\n});"
                 },
                 {
                     "id": 60,
-                    "hardness": 0.0,
+                    "hardness": 0.2,
                     "name": "Просмотр увеличенной картинки при клике",
-                    "description": "",
-                    "default_text": ""
+                    "description": "При клике на каждую картинку в галерее (то есть на каждый элемент внутри элемента с id=\"gallery\"), необходимо показывать эту картинку в увеличенном варианте, на весь экран. Возвращать исходный режим просмотра нужно по повторному клику.\n\nВ открытом для просмотра режиме необходимо добавлять элементу атрибут \"data-is-fullscreen\"",
+                    "default_text": "// Получаем HTML-элемент гарелеи изображений\nconst galleryImageElements = document.querySelectorAll(___);\n___.forEach(element => {\n  element.addEventListener('click', () => {\n    // TODO: если на элементе атрибут \"data-is-fullscreen\" уже существует, его нужно убрать. Если не существует - добавить\n\n    // Если на элементе существует атрибут \"data-is-fullscreen\", необходимо добавить на элемент стили для растягивания его на весь экран поверх всех элементов\n    if (element.hasAttribute('data-is-fullscreen')) {\n      element.style.transform = 'none'; // Нужно, чтобы убрать стили от другого блока кода\n      element.style.position = 'fixed';\n      element.style.top = ;\n      element.style.left = ;\n      element.style.width = ;\n      element.style.height = ;\n      element.style.zIndex = ;\n      return;\n    }\n    // Иначе необходимо вернуть всё обратно и убрать эти стили\n    element.style.position = 'initial';\n    element.style.width = ;\n    element.style.height = ;\n  });\n});"
                 },
                 {
                     "id": 70,
-                    "hardness": 0.0,
+                    "hardness": 0.1,
                     "name": "Подсчет итоговой стоимости в калькуляторе",
-                    "description": "",
-                    "default_text": ""
+                    "description": "При изменении полей формы калькулятора необходимо пересчитывать итоговый результат и выводить его внутри элемента для вывода. Поле ввода цены одного телефона имеет id=\"form-calculator__input-cost\". Поле ввода количества телефоноы имеет id=\"form-calculator__input-count\". Элемент для вывода результата имеет id=\"form-calculator__result\".",
+                    "default_text": "// Получаем HTML-элементы двух полей ввода и элемент для вывода результата\nconst inputCostElement = document.getElementById(___);\nconst inputCountElement = document.getElementById(___);\nconst calculatedResultElement = document.getElementById(___);\n// Функция подсчета и обновления результата\nfunction calculateAndSetResult() {\n  const result = ___;\n  ___ = String(result) || '0';\n}\n// Добавляем EventListener'ы для вызова функции обновления при вводе данных в инпуты\n___.addEventListener(___, ___);\n___.addEventListener(___, ___);"
                 },
                 {
                     "id": 80,
                     "hardness": 0.0,
-                    "name": "Карусель изображений",
-                    "description": "",
-                    "default_text": ""
+                    "name": "Вывод данных по клике",
+                    "description": "При клике на логотип сайта правой кнопкой мыши (или при долгом удержании на мобильных устройствах) необходимо показывать пользователю дату и версию сборки фронтенда. Пусть это будет 1 апреля 2024 года, 17:15, версия Beta-1.8.1.\n\nЛоготип сайта имеет id=\"header__logo\"",
+                    "default_text": "// Получаем HTML-элемент логотипа\nconst logoElement = document.getElementById(___);\n// Добавляем EventListener для показа информации\n// Самый простой способ - использовать функцию alert"
                 }
             ]
         }
