@@ -69,7 +69,7 @@ class Fragment:
         self.fragment_description = fragment_description
         self.fragment_hardness = fragment_hardness
         self.fragment_default_text = fragment_default_text
-        self.text = ''
+        self.text = self.fragment_default_text
 
 
 def getExistingFragmentUser(user_username: str, milestone_id: int):
@@ -99,9 +99,11 @@ def addFragmentUser(user_id: int, user_username: str, milestone_id: int, request
     for fragment in _fragments:
         if fragment.milestone_id == milestone_id:
             for availableFragment in availableFragments:
-                if availableFragment['id'] == fragment.fragment_id:
+                if availableFragment['id'] == fragment.fragment_id or availableFragment.get('only_for_system'):
                     availableFragments.remove(availableFragment)
                     break
+    if len(availableFragments) == 0:
+        return None
 
     # Choose one of available fragments max closer to requested hardness
     minFragment = None
@@ -137,6 +139,9 @@ def getAllMilestoneFragments(milestone_id: int):
             if fragment.fragment_id == availableFragment['id']:
                 isFound = True
         if not isFound:
-            res.append(Fragment('NOT GOTTEN', 'NOT GOTTEN', milestone_id, int(availableFragment['id']), availableFragment['name'], availableFragment['description'], availableFragment['default_text'], float(availableFragment['hardness'])))
+            if availableFragment.get('only_for_system'):
+                res.append(Fragment('', '__SYSTEM__', milestone_id, int(availableFragment['id']), availableFragment['name'], availableFragment['description'], availableFragment['default_text'], float(availableFragment['hardness'])))
+            else:
+                res.append(Fragment('NOT TAKEN', 'NOT TAKEN', milestone_id, int(availableFragment['id']), availableFragment['name'], availableFragment['description'], availableFragment['default_text'], float(availableFragment['hardness'])))
 
     return res

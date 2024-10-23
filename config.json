@@ -15,25 +15,168 @@
             "id": 1,
             "fragments": [
                 {
-                    "id": 1,
+                    "id": 0,
+                    "hardness": -1,
+                    "name": "",
+                    "description": "",
+                    "default_text": "<header>",
+                    "only_for_system": true
+                },
+                {
+                    "id": 10,
                     "hardness": 0.0,
                     "name": "Логотип сайта",
-                    "description": "Необходимо создать элемент, показывающий логотип сайта. Он должен растигиваться на 100% предоставленной ему ширины и высоты",
-                    "default_text": "<div>\n  <img/>\n</div>"
+                    "description": "Необходимо создать элемент, показывающий логотип сайта. Он должен растигиваться на 100% предоставленной ему ширины и высоты.",
+                    "default_text": "<div>\n  <img>\n</div>"
                 },
                 {
-                    "id": 2,
-                    "hardness": 0.7,
-                    "name": "Some Name 2",
-                    "description": "Some Description",
-                    "default_text": ".css"
+                    "id": 20,
+                    "hardness": 0.8,
+                    "name": "Navbar (навигационная панель)",
+                    "description": "Необходимо создать элемент, показывающий навигационную панель сайта. Он должен растигиваться на 100% предоставленной ему ширины, в нём должны быть выровненные в ряд ссылки на разделы сайта. Можно добавить информацию о профиле пользователя справа.",
+                    "default_text": "<nav>\n  <a></a>\n  <a></a>\n  <a></a>\n  <a></a>\n</nav>"
                 },
                 {
-                    "id": 3,
+                    "id": 30,
+                    "hardness": -1,
+                    "name": "",
+                    "description": "",
+                    "default_text": "</header>\n<main style=\"margin: 20px 60px; padding: 30px;\">",
+                    "only_for_system": true
+                },
+                {
+                    "id": 40,
+                    "hardness": 0.9,
+                    "name": "Галерея фото",
+                    "description": "Необходимо создать галерею с тремя фотографиями, растягиващимися по ширине страницы. Каждое из них должно быть всегда квадратным независимо от размера исходной картинки.",
+                    "default_text": "<section>\n  <h1></h1>\n  <div>\n    <img>\n    <img>\n    <img>\n  </div>\n</section>"
+                },
+                {
+                    "id": 50,
+                    "hardness": 0,
+                    "name": "Разделительная черта",
+                    "description": "Необходимо добавить горизонтальную разделительную черту, разделяющую гелерею и основной текст страницы.",
+                    "default_text": ""
+                },
+                {
+                    "id": 60,
+                    "hardness": 0.4,
+                    "name": "Параграф с заголовком",
+                    "description": "Необходимо добавить заголовок блока и простой текстовый блок с каким-то большим текстом.",
+                    "default_text": "<section>\n  <h2></h2>\n  <p></p>\n</section>"
+                },
+                {
+                    "id": 70,
+                    "hardness": 0.5,
+                    "name": "Параграф со списком",
+                    "description": "Необходимо создать текстовый блок со включенным в него маркированым списком.",
+                    "default_text": "<section>\n  <p></p>\n</section>"
+                },
+                {
+                    "id": 80,
+                    "hardness": 0.5,
+                    "name": "Разворачивающийся список",
+                    "description": "Необходимо создать блок с заголовком и текстом, разворачивающимся при клике на заголовок. По умолчанию текст должен быть развернут.",
+                    "default_text": "<section>\n  <details></details>\n</section>"
+                },
+                {
+                    "id": 90,
+                    "hardness": 1,
+                    "name": "Форма с данными",
+                    "description": "Необходимо создать форму, в которую пользователь может вводить данные, чтобы мы ему перезвонили. Нам нужно узнать: Имя, Телефон, Любой текст, который он захочет оставить.",
+                    "default_text": "<section>\n  <form>\n    <label for=\"some-input-id\"></label>\n    <input id=\"some-input-id\">\n  </form>\n</section>"
+                },
+                {
+                    "id": 100,
+                    "hardness": -1,
+                    "name": "",
+                    "description": "",
+                    "default_text": "</main>",
+                    "only_for_system": true
+                },
+                {
+                    "id": 110,
+                    "hardness": 0.8,
+                    "name": "Footer (подвал) сайта",
+                    "description": "Необходимо создать футер(подвал) сайта со списком контактов, а так же ссылками на соцсети, телефонным номером и email'ом",
+                    "default_text": "<footer>\n  <a>\n    <img><span>VK</span>\n  </a>\n</footer>"
+                }
+            ]
+        },
+
+
+        {
+            "id": 2,
+            "fragments": [
+                {
+                    "id": 10,
+                    "hardness": 0.0,
+                    "name": "Логотип сайта",
+                    "description": "Стилизуйте логотип сайта. Ваша часть вёрстки:\n\n<header class=\"header\">\n  <div class=\"header__logo\">\n    <div class=\"header__logo__top\">Mobile</div>\n    <div class=\"header__logo__bottom\">\n      <span>store</span>\n      <img src=\"../../res/res-site-2/logo.svg\" alt=\"logo\">\n    </div>\n  </div>\n</header>",
+                    "default_text": ".header {\n  padding: ;\n  background: ;\n}\n.header__logo {\n  font-size: ;\n}\n.header__logo img {\n  height: ;\n  margin: ;\n}\n.header__logo__bottom {\n  display: flex;\n  align-items: ;\n  justify-content: ;\n}"
+                },
+                {
+                    "id": 20,
+                    "hardness": 0.6,
+                    "name": "Navbar (навигационная панель)",
+                    "description": "Стилизуйте navbar сайта. Ваша часть вёрстки:\n\n<header class=\"header\">\n  <nav class=\"navbar\">\n    <a class=\"navbar__link\" href=\"#products\">Продукция</a>\n    <a class=\"navbar__link\" href=\"#questions\">Вопросы</a>\n    <a class=\"navbar__link\" href=\"#about\">О нас</a>\n    <a class=\"navbar__link\" href=\"#contacts\">Контакты</a>\n  </nav>\n</header>",
+                    "default_text": ".navbar {\n  display: flex;\n  justify-content: ;\n  align-items: ;\n}\n.navbar__link {\n  transition: ___ 0.2s ease;\n}\n.navbar__link:hover {\n}"
+                },
+                {
+                    "id": 30,
+                    "hardness": 0,
+                    "name": "Основная часть и разделительная линия",
+                    "description": "Стилизуйте основную часть сайта и разделительную горизонтальную линию. Стили для <section> не нужны. Ваша часть вёрстки:\n\n<main class=\"main\">\n  <section class=\"section\"></section>\n  <hr>\n  <section class=\"section\"></section>\n  ...\n</main>",
+                    "default_text": ".main {\n  background: ;\n  color: ;\n}\n.main hr {\n  margin: ;\n  border: ;\n}"
+                },
+                {
+                    "id": 40,
+                    "hardness": 0.6,
+                    "name": "Блок основной части",
+                    "description": "Стилизуйте блок с заголовком и текстом блока. Сделайте так, чтобы блоки через один (каждый второй) были разной стилизации. Ваша часть вёрстки:\n\n<section class=\"section\">\n  <header class=\"section__header\">**Текст заголовка**</header>\n  <p class=\"section__paragraph\">**Полный текст блока**</p>\n</section>\n<section class=\"section\">\n  <header class=\"section__header\">**Текст заголовка**</header>\n  <p class=\"section__paragraph\">**Полный текст блока**</p>\n</section>\n<section class=\"section\">\n  <header class=\"section__header\">**Текст заголовка**</header>\n  <p class=\"section__paragraph\">**Полный текст блока**</p>\n</section>",
+                    "default_text": ".section {\n  padding: ;\n}\n.section:___ {\n}\n.section__header {\n  text-align: ;\n  font-size: ;\n  padding: ;\n}"
+                },
+                {
+                    "id": 50,
+                    "hardness": 0.6,
+                    "name": "Галерея изображений",
+                    "description": "Стилизуйте галерею изображений. Все картинки должны быть квадратными, умещаться ровно по 3 в строку. Вся галерея должна быть растянута на всю ширину. Ваша часть вёрстки:\n\n<div class=\"gallery\">\n  <img class=\"gallery__image\" src=\"...\" alt=\"phone\">\n  <img class=\"gallery__image\" src=\"...\" alt=\"phone\">\n  <img class=\"gallery__image\" src=\"...\" alt=\"phone\">\n</div>",
+                    "default_text": ".gallery {\n  display: flex;\n  justify-content: ;\n}\n.gallery__image {\n  width: ;\n  aspect-ratio: ;\n  object-fit: ;\n}"
+                },
+                {
+                    "id": 60,
                     "hardness": 0.2,
-                    "name": "Some Name 3",
-                    "description": "Some Description",
-                    "default_text": ".css"
+                    "name": "Маркированый список",
+                    "description": "Стилизуйте маркированый список, в каждом элементе которого есть заголовок и описание. Ваша часть вёрстки:\n\n<ul class=\"section__list\">\n  <li class=\"list__item\">\n    <header class=\"item__header\">**Заголовок**</header>\n    <span class=\"item__description\">**Текст**</span>\n  </li>\n  <li class=\"list__item\">\n    <header class=\"item__header\">**Заголовок**</header>\n    <span class=\"item__description\">**Текст**</span>\n  </li>\n  <li class=\"list__item\">\n    <header class=\"item__header\">**Заголовок**</header>\n    <span class=\"item__description\">**Текст**</span>\n  </li>\n</ul>",
+                    "default_text": ".section__list {\n  padding: ;\n}\n.list__item {\n  padding: ;\n}\n.item__header {\n  font-size: ;\n}\n.item__description {\n  font-size: ;\n}"
+                },
+                {
+                    "id": 70,
+                    "hardness": 0.6,
+                    "name": "Раскрывающийся список",
+                    "description": "Стилизуйте раскрывающийся список. Элементы внутри него должен быть через один(каждый второй) стилизованы по-разному. Ваша часть вёрстки:\n\n<details class=\"details\" open>\n  <summary class=\"details__summary\">Наши клиенты</summary>\n  <div class=\"details__text\">\n    <div><img src=\"...\" alt=\"logo\">Газпром</div>\n    <div><img src=\"...\" alt=\"logo\">Роснефть</div>\n    <div><img src=\"...\" alt=\"logo\">Сбер</div>\n    <div><img src=\"...\" alt=\"logo\">Т-Банк</div>\n    ...\n  </div>\n</details>",
+                    "default_text": ".details {\n}\n.details__summary {\n  font-size: ;\n  cursor: ;\n}\n.details__text {\n  padding: ;\n}\n.details__text > * {\n  display: flex;\n  align-items: ;\n  gap: ;\n  padding: ;\n}\n.details__text > *:nth-child(2n) {\n}\n.details__text img {\n  width: 25px;\n  height: 25px;\n}"
+                },
+                {
+                    "id": 80,
+                    "hardness": 0.5,
+                    "name": "Форма ввода данных",
+                    "description": "Стилизуйте форму ввода данных, заголовок в ней, подпись под ним, а так же кнопку отправки формы. Контейнеры с полями ввода стилизовать не нужно. Ваша часть вёрстки:\n\n<form class=\"form-contacts\" action=\"javascript:alert('Форма отправлена')\">\n  <header class=\"form-contacts__header\">**Заголовок**</header>\n  <div class=\"form-contacts__description\">**Описание**</div>\n\n  <div class=\"**Контейнер полей ввода**\">...</div>\n  <div class=\"**Контейнер полей ввода**\">...</div>\n  <div class=\"**Контейнер полей ввода**\">...</div>\n  \n  <input class=\"form-contacts__input-submit\" type=\"submit\" value=\"Отправить\">\n</form>",
+                    "default_text": ".form-contacts {\n  background: ;\n  color: ;\n  padding: ;\n  margin: ;\n}\n.form-contacts__header {\n  text-align: ;\n  font-size: ;\n}\n.form-contacts__description {\n  text-align: ;\n  margin-bottom: ;\n}\n.form-contacts__input-submit {\n  display: block;\n  margin: ;\n  padding: ;\n  font-size: ;\n  cursor: ;\n  background: ;\n  border: ;\n  transition: ___ 0.2s ease;\n}\n.form-contacts__input-submit:hover {\n}"
+                },
+                {
+                    "id": 90,
+                    "hardness": 1,
+                    "name": "Поля ввода данных",
+                    "description": "Стилизуйте поля ввода данных внутри формы. Ваша часть вёрстки:\n\n<form class=\"...\" action=\"javascript:alert('Форма отправлена')\">\n  <div class=\"form-contacts__input-container\">\n    <label class=\"input-container__label\">Ваше имя</label>\n    <input class=\"input-container__input\" type=\"text\" name=\"name\" placeholder=\"Иван Иванов\" required>\n  </div>\n  <div class=\"form-contacts__input-container\">\n    <label class=\"input-container__label\">Номер телефона:</label>\n    <input class=\"input-container__input\" type=\"tel\" name=\"tel\" placeholder=\"8-XXX-XXX-XX-XX\" required>\n  </div>\n  <div class=\"form-contacts__input-container\">\n    <div class=\"form-contacts__input-radio-group\">\n      <label class=\"input-container__label\">Продажа</label>\n      <input class=\"input-container__input\" type=\"radio\" name=\"question-theme\" required>\n    </div>\n    ... (Всего 3 таких radio-пункта) ...\n  </div>\n  <div class=\"form-contacts__input-container\">\n    <label class=\"input-container__label\">Любые пояснения</label>\n    <textarea class=\"input-container__input\" name=\"name\"></textarea>\n  </div>\n</form>",
+                    "default_text": ".form-contacts__input-container {\n  padding: ;\n  display: flex;\n  justify-content: ;\n  gap: ;\n}\n.input-container__label {\n}\n.input-container__input {\n}\ntextarea.input-container__input {\n  resize: vertical;\n}\n.form-contacts__input-radio-group .input-container__label {\n  margin-right: ;\n}"
+                },
+                {
+                    "id": 100,
+                    "hardness": 1,
+                    "name": "Footer (подвал)",
+                    "description": "Стилизуйте footer (подвал) сайта. Все контакты кроме телефона могут располагаться вертикально у левой стороны, а телефон - у правой. Ваша часть вёрстки:\n\n<footer class=\"footer\">\n  <div class=\"footer__left-column\">\n    <a class=\"footer__link\" href=\"https://vk.com/bmstu1830\" target=\"_blank\">\n      <img src=\"...\" alt=\"vk\"><span>VK</span>\n    </a>\n    <a class=\"footer__link\" href=\"https://t.me/bmstu1830\" target=\"_blank\">\n      <img src=\"...\" alt=\"tg\"><span>TG</span>\n    </a>\n    <a class=\"footer__link footer__link_email\" href=\"mailto:contacts@mobile.phones\" target=\"_blank\">\n      <img src=\"...\" alt=\"email\"><span>contacts@mobile.phones</span>\n    </a>\n  </div>\n\n  <div class=\"footer__right-column\">\n    <a class=\"footer__link footer__link_telephone\" href=\"tel:+79999999999\" target=\"_blank\">\n      <span>+7 999 999 99 99</span>\n    </a>\n  </div>\n</footer>",
+                    "default_text": ".footer {\n  padding: ;\n  background: ;\n  display: flex;\n  justify-content: ;\n}\n.footer__link {\n  display: flex;\n  align-items: ;\n  gap: ;\n  transition: ___ 0.2s ease;\n}\n.footer__link:hover {\n}\n.footer__link.footer__link_email {\n}\n.footer__link.footer__link_telephone {\n}\n.footer__link img {\n  width: 30px;\n  height: 30px;\n}"
                 }
             ]
         }

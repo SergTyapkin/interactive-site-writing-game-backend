@@ -9,6 +9,8 @@ def register_callbacks():
         milestone_id = int(data['milestone_id'])
         request_hardness = float(data['request_hardness'])
         fragment = Storage.addFragmentUser(user_id, user_username, milestone_id, request_hardness)
+        if fragment is None:
+            return
         WS.send_set_fragment(fragment)
     WS.setCallback("take_fragment", take_fragment)
 

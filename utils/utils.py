@@ -18,7 +18,7 @@ def str_between(string: (str, bytes), start: (str, bytes), end: (str, bytes), re
 
 def read_config(filepath: str) -> dict:
     try:
-        file = open(filepath, "r")
+        file = open(filepath, "r", encoding='utf-8')
         config = json.load(file)
         file.close()
 
