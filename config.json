@@ -83,11 +83,18 @@
                     "id": 90,
                     "hardness": 1,
                     "name": "Форма с данными",
-                    "description": "Необходимо создать форму, в которую пользователь может вводить данные, чтобы мы ему перезвонили. Нам нужно узнать: Имя, Телефон, Любой текст, который он захочет оставить.",
-                    "default_text": "<section>\n  <form>\n    <label for=\"some-input-id\"></label>\n    <input id=\"some-input-id\">\n  </form>\n</section>"
+                    "description": "Необходимо создать форму с заголовком, в которую пользователь может вводить данные, чтобы мы ему перезвонили. Нам нужно узнать: Имя, Телефон, Любой текст, который он захочет оставить.",
+                    "default_text": "<section>\n  <form>\n    <header></header>\n    <label for=\"some-input-id\"></label>\n    <input id=\"some-input-id\">\n  </form>\n</section>"
                 },
                 {
                     "id": 100,
+                    "hardness": 1,
+                    "name": "Форма калькулятора",
+                    "description": "Необходимо создать форму для калькулятора подсчета общей стоимости товаров. Необходимо два поля ввода чисел: для стоимости товара и для количества товара, а так же элемент для показа итогового результата.",
+                    "default_text": "<section>\n  <form>\n    <header></header>\n    <label for=\"some-input-id\"></label>\n    <input id=\"some-input-id\">\n  </form>\n</section>"
+                },
+                {
+                    "id": 110,
                     "hardness": -1,
                     "name": "",
                     "description": "",
@@ -95,7 +102,7 @@
                     "only_for_system": true
                 },
                 {
-                    "id": 110,
+                    "id": 120,
                     "hardness": 0.8,
                     "name": "Footer (подвал) сайта",
                     "description": "Необходимо создать футер(подвал) сайта со списком контактов, а так же ссылками на соцсети, телефонным номером и email'ом",
@@ -113,7 +120,7 @@
                     "hardness": 0.0,
                     "name": "Логотип сайта",
                     "description": "Стилизуйте логотип сайта. Ваша часть вёрстки:\n\n<header class=\"header\">\n  <div class=\"header__logo\">\n    <div class=\"header__logo__top\">Mobile</div>\n    <div class=\"header__logo__bottom\">\n      <span>store</span>\n      <img src=\"../../res/res-site-2/logo.svg\" alt=\"logo\">\n    </div>\n  </div>\n</header>",
-                    "default_text": ".header {\n  padding: ;\n  background: ;\n}\n.header__logo {\n  font-size: ;\n}\n.header__logo img {\n  height: ;\n  margin: ;\n}\n.header__logo__bottom {\n  display: flex;\n  align-items: ;\n  justify-content: ;\n}"
+                    "default_text": ".header {\n  padding: ;\n  background: ;\n}\n.header__logo {\n  font-size: ;\n}\n.header__logo img {\n  height: 50px;\n  margin: ;\n}\n.header__logo__bottom {\n  display: flex;\n  align-items: ;\n  justify-content: ;\n}"
                 },
                 {
                     "id": 20,
@@ -141,7 +148,7 @@
                     "hardness": 0.6,
                     "name": "Галерея изображений",
                     "description": "Стилизуйте галерею изображений. Все картинки должны быть квадратными, умещаться ровно по 3 в строку. Вся галерея должна быть растянута на всю ширину. Ваша часть вёрстки:\n\n<div class=\"gallery\">\n  <img class=\"gallery__image\" src=\"...\" alt=\"phone\">\n  <img class=\"gallery__image\" src=\"...\" alt=\"phone\">\n  <img class=\"gallery__image\" src=\"...\" alt=\"phone\">\n</div>",
-                    "default_text": ".gallery {\n  display: flex;\n  justify-content: ;\n}\n.gallery__image {\n  width: ;\n  aspect-ratio: ;\n  object-fit: ;\n}"
+                    "default_text": ".gallery {\n  display: flex;\n  justify-content: ;\n}\n.gallery__image {\n  width: 50%;\n  aspect-ratio: ;\n  object-fit: ;\n}"
                 },
                 {
                     "id": 60,
@@ -174,9 +181,78 @@
                 {
                     "id": 100,
                     "hardness": 1,
+                    "name": "Форма калькулятора",
+                    "description": "Стилизуйте форму калькулятора подсчета общей стоимости. Ваша часть вёрстки:\n\n<form class=\"form-calculator\">\n  <header class=\"form-calculator__header\">**Заголовок**</header>\n\n  <div class=\"form-calculator__input-container\">\n    <label class=\"input-calculator__label\">Стоимость телефона</label>\n    <input class=\"input-calculator__input\">\n  </div>\n  <div class=\"form-calculator__input-container\">\n    <label class=\"input-calculator__label\">Количество телефонов</label>\n    <input class=\"input-calculator__input\">\n  </div>\n\n  <div class=\"form-calculator__result\">Общая стоимость: <span id=\"form-calculator__result\"></span></div>\n</form>",
+                    "default_text": ".form-calculator {\n  padding: ;\n  color: ;\n}\n.form-calculator__header {\n  text-align: ;\n  font-size: ;\n  margin-bottom: ;\n}\n.form-calculator__input-container {\n  padding: ;\n  display: flex;\n  justify-content: ;\n  align-items: ;\n  gap: ;\n}\n.input-calculator__label {\n}\n.input-calculator__input {\n  padding: ;\n  background: ;\n  border: ;\n}"
+                },
+                {
+                    "id": 110,
+                    "hardness": 1,
                     "name": "Footer (подвал)",
                     "description": "Стилизуйте footer (подвал) сайта. Все контакты кроме телефона могут располагаться вертикально у левой стороны, а телефон - у правой. Ваша часть вёрстки:\n\n<footer class=\"footer\">\n  <div class=\"footer__left-column\">\n    <h2 class=\"footer__header\">Mobile store</h2>\n    <small class=\"footer__description\">Ваш надежный проводник в мир мобильных телефонов</small>\n    \n    <a class=\"footer__link\" href=\"https://vk.com/bmstu1830\" target=\"_blank\">\n      <img src=\"...\" alt=\"vk\"><span>VK</span>\n    </a>\n    <a class=\"footer__link\" href=\"https://t.me/bmstu1830\" target=\"_blank\">\n      <img src=\"...\" alt=\"tg\"><span>TG</span>\n    </a>\n    <a class=\"footer__link footer__link_email\" href=\"mailto:contacts@mobile.phones\" target=\"_blank\">\n      <img src=\"...\" alt=\"email\"><span>contacts@mobile.phones</span>\n    </a>\n  </div>\n\n  <div class=\"footer__right-column\">\n    <a class=\"footer__link footer__link_telephone\" href=\"tel:+79999999999\" target=\"_blank\">\n      <span>+7 999 999 99 99</span>\n    </a>\n  </div>\n</footer>",
                     "default_text": ".footer {\n  padding: ;\n  background: ;\n  display: flex;\n  justify-content: ;\n}\n.footer__header {\n}\n.footer__description {\n}\n.footer__link {\n  display: flex;\n  align-items: ;\n  gap: ;\n  transition: ___ 0.2s ease;\n}\n.footer__link:hover {\n}\n.footer__link.footer__link_email {\n}\n.footer__link.footer__link_telephone {\n}\n.footer__link img {\n  width: 30px;\n  height: 30px;\n}"
+                }
+            ]
+        },
+
+        {
+            "id": 3,
+            "fragments": [
+                {
+                    "id": 10,
+                    "hardness": 0.5,
+                    "name": "Отправка формы",
+                    "description": "",
+                    "default_text": ""
+                },
+                {
+                    "id": 20,
+                    "hardness": 1,
+                    "name": "Показ модального окна",
+                    "description": "",
+                    "default_text": ""
+                },
+                {
+                    "id": 30,
+                    "hardness": 0.0,
+                    "name": "Анимация с зависимостью от положения курсора",
+                    "description": "",
+                    "default_text": ""
+                },
+                {
+                    "id": 40,
+                    "hardness": 0.0,
+                    "name": "Анимация с зависимостью от прокрутки страницы",
+                    "description": "",
+                    "default_text": ""
+                },
+                {
+                    "id": 50,
+                    "hardness": 0.0,
+                    "name": "Анимация плавного раскрытия списка",
+                    "description": "",
+                    "default_text": ""
+                },
+                {
+                    "id": 60,
+                    "hardness": 0.0,
+                    "name": "Просмотр увеличенной картинки при клике",
+                    "description": "",
+                    "default_text": ""
+                },
+                {
+                    "id": 70,
+                    "hardness": 0.0,
+                    "name": "Подсчет итоговой стоимости в калькуляторе",
+                    "description": "",
+                    "default_text": ""
+                },
+                {
+                    "id": 80,
+                    "hardness": 0.0,
+                    "name": "Карусель изображений",
+                    "description": "",
+                    "default_text": ""
                 }
             ]
         }

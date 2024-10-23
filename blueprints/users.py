@@ -9,5 +9,6 @@ def register_callbacks():
     WS.setCallback("login_user", login_user)
 
     def logout_user(client, data):
-        Storage.deleteUser(data['username'])
+        # Storage.deleteUser(data['username'])
+        pass
     WS.setCallback("logout_user", logout_user)
