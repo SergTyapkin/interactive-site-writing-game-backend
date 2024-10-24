@@ -203,7 +203,7 @@
                     "hardness": 0.4,
                     "name": "Отправка формы",
                     "description": "Необходимо перехватывать событие 'submit' отправки формы, предотвращать его поведение по умолчанию, после чего отправлять POST-запрос на сайт \"https://example.com/send-form\", с JSON-данными в теле в следующем формате:\n\n{\n  \"name\": string,\n  \"phone\": string,\n  \"question_theme\": \"sell\" | \"fix\" | \"info\"\n  \"texts\": string\n}\n\nid HTML-элементов:\n-формы: \"form-contacts\"\n- инпут ввода имени: \"form-contacts__input-name\"\n-инпут ввода телефона: \"form-contacts__input-phone\"\n-инпут ввода текста пояснений: \"form-contacts__input-text\"\n Инпуты с type=\"radio\" для выбора типа обращения имеют атрибут name=\"question-theme\".",
-                    "default_text": "// Получаем HTML-элементы\nconst formElement = document.getElementById();\nconst inputNameElement = document.getElementById();\nconst inputPhoneElement = document.getElementById();\nconst inputTextsElement = document.getElementById();\nformElement.addEventListener(, async (event) => {\n  // Ожидаем подтверждения пользователем в модальном окне\n  if (!await confirm('Подтвердите отправку данных')) {\n    return;\n  }\n  // Отправляем запрос\n  await fetch(___, {\n    method: ___,\n    headers: {\n      ___\n    },\n    body: JSON.stringify({\n      ___\n    }),\n  });\n  // TODO: Необходимо добавить проверку на то, что запрос принят сервером\n  // Говорим спасибо, что человек отправил форму\n  formElement.innerHTML = ___;\n});"
+                    "default_text": "// Получаем HTML-элементы\nconst formElement = document.getElementById(___);\nconst inputNameElement = document.getElementById(___);\nconst inputPhoneElement = document.getElementById(___);\nconst inputTextsElement = document.getElementById(___);\nformElement.addEventListener(___, async (event) => {\n  // Ожидаем подтверждения пользователем в модальном окне\n  if (!await confirm('Подтвердите отправку данных')) {\n    return;\n  }\n  // Отправляем запрос\n  await fetch(___, {\n    method: ___,\n    headers: {\n      ___\n    },\n    body: JSON.stringify({\n      ___\n    }),\n  });\n  // TODO: Необходимо добавить проверку на то, что запрос принят сервером\n  // Говорим спасибо, что человек отправил форму\n  formElement.innerHTML = ___;\n});"
                 },
                 {
                     "id": 20,
@@ -250,9 +250,22 @@
                 {
                     "id": 80,
                     "hardness": 0.0,
-                    "name": "Вывод данных по клике",
-                    "description": "При клике на логотип сайта правой кнопкой мыши (или при долгом удержании на мобильных устройствах) необходимо показывать пользователю дату и версию сборки фронтенда. Пусть это будет 1 апреля 2024 года, 17:15, версия Beta-1.8.1.\n\nЛоготип сайта имеет id=\"header__logo\"",
+                    "name": "Вывод данных по клику",
+                    "description": "При клике на логотип сайта правой кнопкой мыши (или при долгом удержании на мобильных устройствах) необходимо показывать пользователю дату и версию сборки фронтенда.\nПусть это будет 1 апреля 2024 года, 17:15, версия Beta-1.8.1.\n\nЛоготип сайта имеет id=\"header__logo\"",
                     "default_text": "// Получаем HTML-элемент логотипа\nconst logoElement = document.getElementById(___);\n// Добавляем EventListener для показа информации\n// Самый простой способ - использовать функцию alert"
+                }
+            ]
+        },
+
+        {
+            "id": 4,
+            "fragments": [
+                {
+                    "id": 10,
+                    "hardness": 0.5,
+                    "name": "",
+                    "description": "",
+                    "default_text": ""
                 }
             ]
         }
