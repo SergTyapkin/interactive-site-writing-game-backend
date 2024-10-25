@@ -91,7 +91,7 @@ class WebSocket(CallbacksWebSocketServer):
                 }, fragmentsData)),
             }
         }))
-    def send_all_milestones(self, client: Client, milestonesData: list[Milestone]):
+    def send_all_milestones(self, client: Client, milestonesData: list[Milestone], hasTakenFragmentsDict: dict[int, bool]):
         self.send(client, json.dumps({
             "event": "all_milestones",
             "data": {
@@ -101,6 +101,7 @@ class WebSocket(CallbacksWebSocketServer):
                     "name": milestoneData.name,
                     "description": milestoneData.description,
                     "code_language": milestoneData.code_language,
+                    "has_taken_fragment": hasTakenFragmentsDict[milestoneData.id],
                 }, milestonesData)),
             }
         }))

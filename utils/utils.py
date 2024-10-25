@@ -28,8 +28,8 @@ def read_config(filepath: str) -> dict:
             config["db_port"] = os.environ["DATABASE_PORT"]
         if "db_user" not in config:
             config["db_user"] = os.environ["DATABASE_USER"]
-        if "db_database" not in config:
-            config["db_database"] = os.environ["DATABASE_DATABASE"]
+        if "db_db" not in config:
+            config["db_db"] = os.environ["DATABASE_DB"]
         if "db_password" not in config:
             config["db_password"] = os.environ["DATABASE_PASSWORD"]
 

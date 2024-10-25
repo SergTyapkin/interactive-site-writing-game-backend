@@ -33,8 +33,8 @@ def register_callbacks():
         if fragment is None:
             print("CRITICAL ERROR. FRAGMENT NOT EXISTING")
             return
-        fragment.text = fragment_text
-        WS.send_broadcast_fragment_updated(fragment)
+        updatedFragment = Storage.updateFragmentText(fragment, fragment_text)
+        WS.send_broadcast_fragment_updated(updatedFragment)
     WS.setCallback("update_fragment_text", update_fragment_text)
 
     def get_all_texts(client, data):
