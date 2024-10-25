@@ -36,8 +36,6 @@ services:
       dockerfile: ./docker-deploy/Dockerfile
       args:
         - PYTHON_RELEASE
-        - WS_HOST
-        - WS_PORT
     environment:
       - DATABASE_HOST=${POSTGRES_HOST}
       - DATABASE_PORT=${POSTGRES_PORT}
@@ -45,6 +43,8 @@ services:
       - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
       - DATABASE_DB=${POSTGRES_DB}
       - ADMIN_USERNAME
+      - WS_PORT
+      - WS_HOST
     volumes:
       - ./dist:/usr/share/nginx/html:rw
       - ./certbot/www:/var/www/certbot/:ro
