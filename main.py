@@ -5,8 +5,10 @@ from utils.utils import read_config
 
 import blueprints.users as users
 import blueprints.fragments as fragments
+import blueprints.milestones as milestones
 users.register_callbacks()
 fragments.register_callbacks()
+milestones.register_callbacks()
 
 
 if __name__ == '__main__':

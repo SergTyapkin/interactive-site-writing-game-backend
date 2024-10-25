@@ -1,7 +1,7 @@
 import json
 import logging
 from WebSocket.websocket_server.cb_websocket_server import CallbacksWebSocketServer
-from storage.storage import User, Fragment
+from storage.models import User, Fragment, Milestone
 
 
 # Singleton
@@ -61,7 +61,7 @@ class WebSocket(CallbacksWebSocketServer):
                 "text": fragmentData.text,
             }
         }))
-    def send_all_texts(self, fragmentsData: [Fragment]):
+    def send_all_texts(self, fragmentsData: list[Fragment]):
         self.send_broadcast(json.dumps({
             "event": "all_texts",
             "data": {
@@ -73,6 +73,19 @@ class WebSocket(CallbacksWebSocketServer):
                     "description": fragmentData.fragment_description,
                     "text": fragmentData.text,
                 }, fragmentsData)),
+            }
+        }))
+    def send_all_milestones(self, milestonesData: list[Milestone]):
+        self.send_broadcast(json.dumps({
+            "event": "all_milestones",
+            "data": {
+                "milestones": list(map(lambda milestoneData: {
+                    "id": milestoneData.id,
+                    "year": milestoneData.year,
+                    "name": milestoneData.name,
+                    "description": milestoneData.description,
+                    "code_language": milestoneData.code_language,
+                }, milestonesData)),
             }
         }))
 
