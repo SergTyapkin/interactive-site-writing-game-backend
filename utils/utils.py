@@ -22,8 +22,16 @@ def read_config(filepath: str) -> dict:
         config = json.load(file)
         file.close()
 
-        # if "db_password" not in config:
-        #     config["db_password"] = os.environ["DATABASE_PASSWORD"]
+        if "db_host" not in config:
+            config["db_host"] = os.environ["DATABASE_HOST"]
+        if "db_port" not in config:
+            config["db_port"] = os.environ["DATABASE_PORT"]
+        if "db_user" not in config:
+            config["db_user"] = os.environ["DATABASE_USER"]
+        if "db_database" not in config:
+            config["db_database"] = os.environ["DATABASE_DATABASE"]
+        if "db_password" not in config:
+            config["db_password"] = os.environ["DATABASE_PASSWORD"]
 
         if "admin_username" not in config:
             config["admin_username"] = os.environ["ADMIN_USERNAME"]

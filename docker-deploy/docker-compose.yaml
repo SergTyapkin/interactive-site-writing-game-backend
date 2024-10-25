@@ -1,0 +1,62 @@
+version: '3.8'
+
+name: ${BACKEND_COMPOSE_NAME:-backend-compose}
+services:
+  postgres:
+    container_name: ${BACKEND_COMPOSE_NAME:-backend-compose}-postgres
+    image: postgres:${POSTGRES_RELEASE}
+    ports:
+      - ${DATABASE_PORT_TO_EXPOSE}:${POSTGRES_PORT}
+    environment:
+      - TZ
+      - PGDATA
+      - POSTGRES_PORT
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    volumes:
+      - ${DATABASE_DATA_PATH}:${PGDATA}
+    networks:
+      default:
+        aliases:
+          - ${DATABASE_HOST}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+
+  app:
+    container_name: ${BACKEND_COMPOSE_NAME:-backend-compose}-python-app
+    build:
+      context: ../
+      dockerfile: ./docker-deploy/Dockerfile
+      args:
+        - PYTHON_RELEASE
+        - WS_HOST
+        - WS_PORT
+    environment:
+      - DATABASE_HOST=${POSTGRES_HOST}
+      - DATABASE_PORT=${POSTGRES_PORT}
+      - DATABASE_USER=${POSTGRES_USER}
+      - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
+      - DATABASE_DB=${POSTGRES_DB}
+    volumes:
+      - ./dist:/usr/share/nginx/html:rw
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/:ro
+    ports:
+      - "80:80"
+      - "443:443"
+      - "${API_PORT}:${API_PORT}"
+    networks:
+      - external-front-back
+      - default
+    restart: unless-stopped
+
+networks:
+  external-front-back:
+      name: ${NETWORK_NAME}
