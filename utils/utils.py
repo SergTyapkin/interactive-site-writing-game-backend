@@ -33,6 +33,11 @@ def read_config(filepath: str) -> dict:
         if "db_password" not in config:
             config["db_password"] = os.environ["DATABASE_PASSWORD"]
 
+        if "ws_host" not in config:
+            config["ws_host"] = os.environ["WS_HOST"]
+        if "ws_port" not in config:
+            config["ws_port"] = os.environ["WS_PORT"]
+
         if "admin_username" not in config:
             config["admin_username"] = os.environ["ADMIN_USERNAME"]
 
