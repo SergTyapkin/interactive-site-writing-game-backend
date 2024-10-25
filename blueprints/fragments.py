@@ -3,15 +3,26 @@ import storage.storage as Storage
 
 
 def register_callbacks():
+    def get_all_available_fragments(client, data):
+        milestone_id = int(data['milestone_id'])
+        fragments = Storage.getAvailableFragments(milestone_id)
+        WS.send_broadcast_available_fragments(milestone_id, fragments)
+    WS.setCallback("get_all_available_fragments", get_all_available_fragments)
+
     def take_fragment(client, data):
         user_id = int(data['user_id'])
         user_username = data['user_username']
         milestone_id = int(data['milestone_id'])
-        request_hardness = float(data['request_hardness'])
-        fragment = Storage.addFragmentUser(user_id, user_username, milestone_id, request_hardness)
+        request_hardness = data.get('request_hardness')
+        request_fragment_id = data.get('request_fragment_id')
+        if request_hardness is not None:
+            fragment = Storage.addFragmentUserByHardness(user_id, user_username, milestone_id, float(request_hardness))
+        else:
+            fragment = Storage.addFragmentUserByFragmentId(user_id, user_username, milestone_id, int(request_fragment_id))
         if fragment is None:
             return
-        WS.send_set_fragment(fragment)
+        WS.send_set_fragment(client, fragment)
+        WS.send_broadcast_available_fragments(milestone_id, Storage.getAvailableFragments(milestone_id))
     WS.setCallback("take_fragment", take_fragment)
 
     def update_fragment_text(client, data):
@@ -23,11 +34,11 @@ def register_callbacks():
             print("CRITICAL ERROR. FRAGMENT NOT EXISTING")
             return
         fragment.text = fragment_text
-        WS.send_fragment_updated(fragment)
+        WS.send_broadcast_fragment_updated(fragment)
     WS.setCallback("update_fragment_text", update_fragment_text)
 
     def get_all_texts(client, data):
         milestone_id = int(data['milestone_id'])
         fragments = Storage.getAllMilestoneFragments(milestone_id)
-        WS.send_all_texts(fragments)
+        WS.send_all_texts(client, fragments)
     WS.setCallback("get_all_texts", get_all_texts)

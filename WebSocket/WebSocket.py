@@ -1,6 +1,7 @@
 import json
 import logging
 from WebSocket.websocket_server.cb_websocket_server import CallbacksWebSocketServer
+from WebSocket.websocket_server.websocket_server import Client
 from storage.models import User, Fragment, Milestone
 
 
@@ -24,8 +25,8 @@ class WebSocket(CallbacksWebSocketServer):
         super().__init__(self, *args, **kwargs, logLevel=logging.DEBUG)
 
 
-    def send_user_logined(self, userData: User):
-        self.send_broadcast(json.dumps({
+    def send_user_logined(self, client: Client, userData: User):
+        self.send(client, json.dumps({
             "event": "user_logined",
             "data": {
                 "id": userData.id,
@@ -33,8 +34,23 @@ class WebSocket(CallbacksWebSocketServer):
                 "is_admin": userData.is_admin,
             }
         }))
-    def send_set_fragment(self, fragmentData: Fragment):
+    def send_broadcast_available_fragments(self, milestone_id: int, fragmentsData: list[Fragment]):
         self.send_broadcast(json.dumps({
+            "event": "available_fragments",
+            "data": {
+                "milestone_id": milestone_id,
+                "fragments": list(map(
+                    lambda fragmentData: {
+                        "id": fragmentData.fragment_id,
+                        "name": fragmentData.fragment_name,
+                        "hardness": fragmentData.fragment_hardness,
+                    },
+                    fragmentsData
+                )),
+            }
+        }))
+    def send_set_fragment(self, client: Client, fragmentData: Fragment):
+        self.send(client, json.dumps({
             "event": "set_fragment",
             "data": {
                 "id": fragmentData.fragment_id,
@@ -46,7 +62,7 @@ class WebSocket(CallbacksWebSocketServer):
                 "text": fragmentData.text,
             }
         }))
-    def send_fragment_updated(self, fragmentData: Fragment):
+    def send_broadcast_fragment_updated(self, fragmentData: Fragment):
         self.send_broadcast(json.dumps({
             "event": "fragment_updated",
             "data": {
@@ -61,8 +77,8 @@ class WebSocket(CallbacksWebSocketServer):
                 "text": fragmentData.text,
             }
         }))
-    def send_all_texts(self, fragmentsData: list[Fragment]):
-        self.send_broadcast(json.dumps({
+    def send_all_texts(self, client: Client, fragmentsData: list[Fragment]):
+        self.send(client, json.dumps({
             "event": "all_texts",
             "data": {
                 "fragments": list(map(lambda fragmentData: {
@@ -75,8 +91,8 @@ class WebSocket(CallbacksWebSocketServer):
                 }, fragmentsData)),
             }
         }))
-    def send_all_milestones(self, milestonesData: list[Milestone]):
-        self.send_broadcast(json.dumps({
+    def send_all_milestones(self, client: Client, milestonesData: list[Milestone]):
+        self.send(client, json.dumps({
             "event": "all_milestones",
             "data": {
                 "milestones": list(map(lambda milestoneData: {

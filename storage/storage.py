@@ -79,11 +79,7 @@ def getExistingFragmentUserById(milestone_id: int, fragment_id: int):
     return None
 
 
-def addFragmentUser(user_id: int, user_username: str, milestone_id: int, request_hardness: float):
-    existingFragment = getExistingFragmentUser(user_username, milestone_id)
-    if existingFragment:
-        return existingFragment
-
+def getAvailableFragments(milestone_id: int):
     # Get available fragments
     availableFragments: list[Fragment] = []
     for milestone in _all_milestones:
@@ -93,9 +89,20 @@ def addFragmentUser(user_id: int, user_username: str, milestone_id: int, request
     for fragment in _taken_fragments:
         if fragment.milestone_id == milestone_id:
             for availableFragment in availableFragments:
-                if (availableFragment.fragment_id == fragment.fragment_id) or availableFragment.only_for_system:
+                if availableFragment.fragment_id == fragment.fragment_id:
                     availableFragments.remove(availableFragment)
                     break
+    for availableFragment in availableFragments:
+        if availableFragment.only_for_system:
+            availableFragments.remove(availableFragment)
+    return availableFragments
+
+def addFragmentUserByHardness(user_id: int, user_username: str, milestone_id: int, request_hardness: float):
+    existingFragment = getExistingFragmentUser(user_username, milestone_id)
+    if existingFragment:
+        return existingFragment
+
+    availableFragments = getAvailableFragments(milestone_id)
     if len(availableFragments) == 0:
         return None
 
@@ -113,6 +120,27 @@ def addFragmentUser(user_id: int, user_username: str, milestone_id: int, request
     _taken_fragments.add(newFragment)
     return newFragment
 
+def addFragmentUserByFragmentId(user_id: int, user_username: str, milestone_id: int, fragment_id: int):
+    existingFragment = getExistingFragmentUser(user_username, milestone_id)
+    if existingFragment:
+        return existingFragment
+
+    availableFragments = getAvailableFragments(milestone_id)
+    if len(availableFragments) == 0:
+        return None
+
+    # Check if fragment_id in available fragments
+    foundFragment = None
+    for availableFragment in availableFragments:
+        if availableFragment.fragment_id == fragment_id:
+            foundFragment = availableFragment
+    if foundFragment is None:
+        return None
+
+    # Create new FragmentUser
+    newFragment = Fragment(user_id, user_username, milestone_id, foundFragment.fragment_id, foundFragment.fragment_name, foundFragment.fragment_description, foundFragment.fragment_default_text, foundFragment.fragment_hardness, foundFragment.only_for_system)
+    _taken_fragments.add(newFragment)
+    return newFragment
 
 def getAllMilestoneFragments(milestone_id: int):
     res = []
