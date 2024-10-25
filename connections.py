@@ -1,3 +1,5 @@
+import os
+
 from WebSocket.WebSocket import WebSocket
 # from database.database import Database
 from utils.utils import read_config
@@ -11,4 +13,5 @@ config = read_config('config.json')
 #     password=config['db_password'],
 #     dbname=config['db_database'],
 # )
-WS = WebSocket(port=int(config['ws_port']))
+_port = int(os.environ.get('PORT', config['ws_port']))  # get environment variable "PORT" or port from config
+WS = WebSocket(port=_port)
