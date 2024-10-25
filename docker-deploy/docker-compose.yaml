@@ -44,6 +44,7 @@ services:
       - DATABASE_USER=${POSTGRES_USER}
       - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
       - DATABASE_DB=${POSTGRES_DB}
+      - ADMIN_USERNAME
     volumes:
       - ./dist:/usr/share/nginx/html:rw
       - ./certbot/www:/var/www/certbot/:ro
