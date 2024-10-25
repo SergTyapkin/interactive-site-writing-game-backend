@@ -22,7 +22,7 @@ def register_callbacks():
         if fragment is None:
             return
         WS.send_set_fragment(client, fragment)
-        WS.send_broadcast_available_fragments(milestone_id, Storage.getAvailableFragments(milestone_id))
+        get_all_available_fragments(client, data)
     WS.setCallback("take_fragment", take_fragment)
 
     def update_fragment_text(client, data):
@@ -42,3 +42,11 @@ def register_callbacks():
         fragments = Storage.getAllMilestoneFragments(milestone_id)
         WS.send_all_texts(client, fragments)
     WS.setCallback("get_all_texts", get_all_texts)
+
+    def clear_fragment_data(client, data):
+        milestone_id = int(data['milestone_id'])
+        fragment_id = int(data['fragment_id'])
+        if Storage.removeUserFragmentByMilestoneIdFragmentId(milestone_id, fragment_id):
+            get_all_available_fragments(client, data)
+            get_all_texts(client, data)
+    WS.setCallback("clear_fragment_data", clear_fragment_data)

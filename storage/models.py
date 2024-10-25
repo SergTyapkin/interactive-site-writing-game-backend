@@ -16,6 +16,9 @@ class User:
         self.username = username
         self.is_admin = (username == config['admin_username'])
 
+    def __repr__(self):
+        return '[USER #' + str(self.username) + ']'
+
 
 class Fragment:
     user_id: int
@@ -41,6 +44,9 @@ class Fragment:
         self.text = self.fragment_default_text
         self.only_for_system = only_for_system
 
+    def __repr__(self):
+        return '[FRAG #' + str(self.fragment_id) + ']'
+
 
 class Milestone:
     id: int
@@ -57,3 +63,6 @@ class Milestone:
         self.description = description
         self.code_language = code_language
         self.fragments = fragments
+
+    def __repr__(self):
+        return '[MILESTONE #' + str(self.id) + ']'

@@ -84,7 +84,7 @@ def getAvailableFragments(milestone_id: int):
     availableFragments: list[Fragment] = []
     for milestone in _all_milestones:
         if milestone.id == milestone_id:
-            availableFragments = milestone.fragments
+            availableFragments = milestone.fragments.copy()
             break
     for fragment in _taken_fragments:
         if fragment.milestone_id == milestone_id:
@@ -141,6 +141,13 @@ def addFragmentUserByFragmentId(user_id: int, user_username: str, milestone_id: 
     newFragment = Fragment(user_id, user_username, milestone_id, foundFragment.fragment_id, foundFragment.fragment_name, foundFragment.fragment_description, foundFragment.fragment_default_text, foundFragment.fragment_hardness, foundFragment.only_for_system)
     _taken_fragments.add(newFragment)
     return newFragment
+
+def removeUserFragmentByMilestoneIdFragmentId(milestone_id: int, fragment_id: int):
+    for fragment in _taken_fragments:
+        if (fragment.milestone_id == milestone_id) and (fragment.fragment_id == fragment_id):
+            _taken_fragments.remove(fragment)
+            return True
+    return False
 
 def getAllMilestoneFragments(milestone_id: int):
     res = []
