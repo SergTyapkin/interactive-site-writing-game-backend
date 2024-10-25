@@ -19,7 +19,7 @@ services:
     networks:
       default:
         aliases:
-          - ${DATABASE_HOST}
+          - ${POSTGRES_HOST}
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
       interval: 10s
@@ -51,7 +51,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "${API_PORT}:${API_PORT}"
+      - "${WS_PORT}:${WS_PORT}"
     networks:
       - external-front-back
       - default
