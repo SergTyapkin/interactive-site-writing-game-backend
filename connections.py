@@ -13,5 +13,6 @@ config = read_config('config.json')
 #     password=config['db_password'],
 #     dbname=config['db_database'],
 # )
+_host = config.get('ws_host', '0.0.0.0')
 _port = int(os.environ.get('PORT', config['ws_port']))  # get environment variable "PORT" or port from config
-WS = WebSocket(port=_port)
+WS = WebSocket(port=_port, host=_host)
